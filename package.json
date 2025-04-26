@@ -1,33 +1,93 @@
 {
-  "name": "@dvcol/typescript-lib-template",
+  "name": "@dvcol/feedly-http-client",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.9.0",
-  "description": "<description>",
+  "description": "Simple fetch based http client for feedly API with full typescript support (request and response).",
   "author": "dvcol",
   "license": "MIT",
-  "homepage": "https://github.com/dvcol/typescript-lib-template",
+  "homepage": "https://github.com/dvcol/feedly-http-client",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dvcol/typescript-lib-template.git"
+    "url": "https://github.com/dvcol/feedly-http-client.git"
   },
-  "bugs": "https://github.com/dvcol/typescript-lib-template/issues",
+  "bugs": "https://github.com/dvcol/feedly-http-client/issues",
   "keywords": [
     "typescript",
     "library",
-    "typescript-lib-template"
+    "feedly-http-client"
   ],
   "exports": {
     ".": {
-      "import.types": "./dist/index.d.ts",
-      "require.types": "./dist/index.d.cts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import.types": "./dist/clients/index.d.ts",
+      "require.types": "./dist/clients/index.d.cts",
+      "import": "./dist/clients/index.js",
+      "require": "./dist/clients/index.cjs"
+    },
+    "./config": {
+      "types": "./dist/config/index.d.ts",
+      "import": "./dist/config/index.js",
+      "require": "./dist/config/index.cjs"
+    },
+    "./models": {
+      "types": "./dist/models/index.d.ts",
+      "import": "./dist/models/index.js",
+      "require": "./dist/models/index.cjs"
+    },
+    "./api": {
+      "types": "./dist/api/api.endpoints.d.ts",
+      "import": "./dist/api/api.endpoints.js",
+      "require": "./dist/api/api.endpoints.cjs"
+    },
+    "./api/minimal": {
+      "types": "./dist/api/api-minimal.endpoints.d.ts",
+      "import": "./dist/api/api-minimal.endpoints.js",
+      "require": "./dist/api/api-minimal.endpoints.cjs"
+    },
+    "./api/authentication": {
+      "types": "./dist/api/endpoints/authentication.endpoint.d.ts",
+      "import": "./dist/api/endpoints/authentication.endpoint.js",
+      "require": "./dist/api/endpoints/authentication.endpoint.cjs"
+    },
+    "./api/boards": {
+      "types": "./dist/api/endpoints/boards.endpoint.d.ts",
+      "import": "./dist/api/endpoints/boards.endpoint.js",
+      "require": "./dist/api/endpoints/boards.endpoint.cjs"
+    },
+    "./api/collections": {
+      "types": "./dist/api/endpoints/collections.endpoint.d.ts",
+      "import": "./dist/api/endpoints/collections.endpoint.js",
+      "require": "./dist/api/endpoints/collections.endpoint.cjs"
+    },
+    "./api/entries": {
+      "types": "./dist/api/endpoints/entries.endpoint.d.ts",
+      "import": "./dist/api/endpoints/entries.endpoint.js",
+      "require": "./dist/api/endpoints/entries.endpoint.cjs"
+    },
+    "./api/markers": {
+      "types": "./dist/api/endpoints/markers.endpoint.d.ts",
+      "import": "./dist/api/endpoints/markers.endpoint.js",
+      "require": "./dist/api/endpoints/markers.endpoint.cjs"
+    },
+    "./api/streams": {
+      "types": "./dist/api/endpoints/streams.endpoint.d.ts",
+      "import": "./dist/api/endpoints/streams.endpoint.js",
+      "require": "./dist/api/endpoints/streams.endpoint.cjs"
+    },
+    "./api/subscriptions": {
+      "types": "./dist/api/endpoints/subscriptions.endpoint.d.ts",
+      "import": "./dist/api/endpoints/subscriptions.endpoint.js",
+      "require": "./dist/api/endpoints/subscriptions.endpoint.cjs"
+    },
+    "./api/tags": {
+      "types": "./dist/api/endpoints/tags.endpoint.d.ts",
+      "import": "./dist/api/endpoints/tags.endpoint.js",
+      "require": "./dist/api/endpoints/tags.endpoint.cjs"
     }
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/clients/index.cjs",
+  "module": "./dist/clients/index.js",
+  "types": "./dist/clients/index.d.ts",
   "files": [
     "*.md",
     "LICENSE",
@@ -44,13 +104,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:package": "publint",
-    "test:unit": "vitest --run --coverage",
+    "test:unit": "vitest --run --coverage --pass-with-no-tests",
     "test:watch": "vitest",
     "release": "standard-version",
     "release:changelog": "extract-changelog-release > RELEASE.md"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@dvcol/base-http-client": "^1.16.1",
+    "@dvcol/common-utils": "^1.29.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",

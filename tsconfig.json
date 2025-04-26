@@ -1,6 +1,27 @@
 {
+  "compilerOptions": {
+    "target": "esNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": "lib",
+    "rootDir": "lib",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "declaration": true,
+    "noEmit": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
   "references": [
-    { "path": "./tsconfig.lib.json" },
     { "path": "./tsconfig.test.json" }
-  ]
+  ],
+  "include": ["lib", "**/*.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx", "dist", "node_modules"]
 }
