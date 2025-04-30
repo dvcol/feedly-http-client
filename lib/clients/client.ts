@@ -34,16 +34,24 @@ export function parseAuthResponse(response: FeedlyTokenResponse | FeedlyRefreshT
 /**
  * FeedlyClient is a wrapper around the FeedlyApi to provide basic authentication and state management.
  *
- * @class Client
+ * @class FeedlyClient
  *
  * @extends {BaseFeedlyClient}
  */
-export class Client extends BaseFeedlyClient {
+export class FeedlyClient extends BaseFeedlyClient {
   /**
    * The url to redirect to after the user has authorized the application.
    */
   get redirectUri() {
     return this.settings.redirect_uri;
+  }
+
+  /**
+   * Indicates if the client has a valid session.
+   */
+  get authenticated() {
+    if (!this.auth.access_token) return false;
+    return (this.auth.expires === undefined || this.auth.expires > Date.now());
   }
 
   /**

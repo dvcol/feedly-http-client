@@ -36,12 +36,14 @@ export const authentication = {
           redirect_uri: true,
           scope: true,
           state: false,
+          force_login: false,
         },
       },
     },
     seed: {
       response_type: 'code',
       scope: 'https://cloud.feedly.com/subscriptions',
+      force_login: true,
     },
   }),
   /**

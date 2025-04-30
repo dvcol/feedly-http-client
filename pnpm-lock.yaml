@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@dvcol/base-http-client':
-        specifier: ^1.16.1
-        version: 1.16.1
+        specifier: ^1.16.2
+        version: 1.16.2
       '@dvcol/common-utils':
         specifier: ^1.29.4
         version: 1.29.4
@@ -237,8 +237,8 @@ packages:
   '@dprint/toml@0.6.4':
     resolution: {integrity: sha512-bZXIUjxr0LIuHWshZr/5mtUkOrnh0NKVZEF6ACojW5z7zkJu7s9sV2mMXm8XQDqN4cJzdHYUYzUyEGdfciaLJA==}
 
-  '@dvcol/base-http-client@1.16.1':
-    resolution: {integrity: sha512-tHJs1yd3BkJ2LxFWd468IclysBVtmEfPL6IU7Rnf6j1jp6PRclnVewmgyhpnHxpO6jAELfjyBbK834jcv3lx3g==}
+  '@dvcol/base-http-client@1.16.2':
+    resolution: {integrity: sha512-tveZZY4D0k7Go4u6Fzks4m/Pm6Yxm44ZcBkGk3sSuD3LYiSqRaAaMp1vFJjm5x9cei690bbFGc2fHDE4us4ibA==}
     engines: {node: '>=20', pnpm: '>= 8'}
 
   '@dvcol/common-utils@1.29.4':
@@ -3773,7 +3773,7 @@ snapshots:
 
   '@dprint/toml@0.6.4': {}
 
-  '@dvcol/base-http-client@1.16.1':
+  '@dvcol/base-http-client@1.16.2':
     dependencies:
       '@dvcol/common-utils': 1.29.4
 

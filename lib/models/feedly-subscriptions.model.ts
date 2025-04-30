@@ -19,6 +19,10 @@ export interface FeedlySubscription {
    */
   categories: FeedlyCategory[];
   /**
+   * An array of topics the subscription belongs to.
+   */
+  topics: string[];
+  /**
    * The sort id of the subscription.
    * This is an optional legacy value imported from Google Reader (mostly).
    */
@@ -42,7 +46,22 @@ export interface FeedlySubscription {
    * This is optional, it is not available for all feeds.
    */
   visualUrl?: string;
-
+  /**
+   * The cover URL of the subscription.
+   * This is optional, it is not available for all feeds.
+   */
+  coverUrl?: string;
+  /**
+   * The icon URL of the subscription.
+   * This is optional, it is not available for all feeds.
+   */
+  iconUrl?: string;
+  /**
+   * Number of unique users subscribed to this feed.
+   */
+  subscribers?: number;
+  velocity?: number;
+  partial?: boolean;
 }
 
 /**

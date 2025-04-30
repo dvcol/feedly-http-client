@@ -11,6 +11,7 @@ import type {
 } from '~/models/feedly-client.model';
 
 import { BaseClient, BaseHeaderContentType, injectCorsProxyPrefix, parseUrl } from '@dvcol/base-http-client';
+import { injectUrlPrefix } from '@dvcol/base-http-client/utils/client';
 
 import { FeedlyApiHeaders } from '~/models/feedly-client.model';
 import { FeedlyExpiredTokenError, FeedlyForbiddenError, FeedlyInvalidParameterError, FeedlyRateLimitError, FeedlyUnauthorizedError, parseError } from '~/models/feedly-error.model';
@@ -102,8 +103,9 @@ export class BaseFeedlyClient extends BaseClient<FeedlyApiQuery, FeedlyApiRespon
    * @throws {Error} Throws an error if mandatory parameters are missing or if a filter is not supported.
    */
   protected _parseUrl<T extends FeedlyApiParams = FeedlyApiParams>(template: FeedlyApiTemplate<T>, params: T): URL {
-    const _template = injectCorsProxyPrefix(template, this.settings);
-    return parseUrl<T>(_template, params, `${this.settings.endpoint}/${template.opts?.version ?? this.settings.version ?? 'v3'}`);
+    const _version = injectUrlPrefix(`/${template.opts?.version ?? this.settings.version ?? 'v3'}`, template);
+    const _template = injectCorsProxyPrefix(_version, this.settings);
+    return parseUrl<T>(_template, params, this.settings.endpoint);
   }
 
   /**

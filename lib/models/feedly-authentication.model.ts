@@ -28,6 +28,12 @@ export interface FeedlyAuthenticationRequest {
    * Make sure this parameter is URL-encoded!
    */
   state?: string;
+  /**
+   * Prompts the user to login even if they are already logged in.
+   *
+   * @default true
+   */
+  force_login?: boolean;
 }
 
 export interface FeedlyTokenRequest {
