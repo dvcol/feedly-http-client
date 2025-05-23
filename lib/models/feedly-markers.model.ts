@@ -1,4 +1,5 @@
-import type { FeedlyCategoryId, FeedlyFeedId } from '~/models/feedly-entry.model';
+import type { FeedlyCategoryId } from '~/models/feedly-entry.model';
+import type { FeedlyFeedId } from '~/models/feedly-feed.model';
 import type { FeedlyTagId } from '~/models/feedly-tag.model';
 
 export interface FeedlyMarkersCountRequest {

@@ -1,3 +1,4 @@
+import type { FeedlyFeedId } from '~/models/feedly-feed.model';
 import type { FeedlyTag } from '~/models/feedly-tag.model';
 
 export interface FeedlyContent {
@@ -21,6 +22,14 @@ export interface FeedlyLink {
    * The type of the feed.
    */
   type?: string;
+  /**
+   * The image width if available.
+   */
+  width?: number;
+  /**
+   * The image height if available.
+   */
+  height?: number;
 }
 
 export interface FeedlyOrigin {
@@ -46,15 +55,19 @@ export interface FeedlyVisual {
   /**
    * The image width.
    */
-  width: number;
+  width?: number;
   /**
    * The image height.
    */
-  height: number;
+  height?: number;
   /**
    * The image MIME type.
    */
-  contentType: string;
+  contentType?: string;
+  /**
+   * The image processor pipeline (e.g. 'feedly-nikon-v3.1').
+   */
+  processor?: string;
 }
 
 export type FeedlyCategoryId = `user/${string}/category/${string}`;
@@ -205,8 +218,6 @@ export interface FeedlyEntity {
   salienceLevel: 'about' | 'mention';
 }
 
-export type FeedlyFeedId = `feed/${string}`;
-
 export interface FeedlyRelated {
   /**
    * The entry id.
@@ -226,6 +237,14 @@ export interface FeedlyRelated {
   unread: boolean;
 }
 
+export interface FeedlyWebFeeds {
+  relatedLayout?: string;
+  relatedTarget?: string;
+  logo?: string;
+  partial?: boolean;
+  wordmark?: string;
+}
+
 export interface FeedlyEntry {
   /**
    * The unique, immutable ID for this particular article.
@@ -235,6 +254,14 @@ export interface FeedlyEntry {
    * The article’s title. This string does not contain any HTML markup.
    */
   title?: string;
+  /**
+   * The entry direct URL (mostly for RSS feeds).
+   */
+  canonicalUrl?: string;
+  /**
+   * The entry language (e.g. "en" for English, "fr" for French).
+   */
+  language?: string;
   /**
    * The article content.
    * This object typically has two values: “content” for the content itself, and “direction” (“ltr” for left-to-right, “rtl” for right-to-left).
@@ -269,6 +296,10 @@ export interface FeedlyEntry {
    */
   updated?: number;
   /**
+   * The number of times this article was updated.
+   */
+  updateCount?: number;
+  /**
    * A list of alternate links for this article.
    * Each link object contains a media type and a URL.
    * Typically, a single object is present, with a link to the original web page.
@@ -288,6 +319,10 @@ export interface FeedlyEntry {
    * If present, “url” will contain the image URL, “width” and “height” its dimension, and “contentType” its MIME type.
    */
   visual?: FeedlyVisual;
+  /**
+   * Array of thumbnail images for this entry.
+   */
+  thumbnail?: FeedlyVisual[];
   /**
    * Was this entry read by the user?
    * If an Authorization header is not provided, this will always return false.
@@ -390,6 +425,7 @@ export interface FeedlyEntry {
    * @plan pro+ and enterprise
    */
   duplicates?: FeedlyRelated[];
+  webfeeds?: FeedlyWebFeeds;
 }
 
 export type FeedlyEntryRequest = Pick<FeedlyEntry, 'title' | 'origin' | 'alternate' | 'published'> & (Pick<FeedlyEntry, 'content'> | Pick<FeedlyEntry, 'summary'> | Pick<FeedlyEntry, 'enclosure'>) & Partial<Omit<FeedlyEntry, 'title' | 'origin' | 'alternate' | 'published' | 'content' | 'summary' | 'enclosure'>>;

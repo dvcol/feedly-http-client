@@ -126,10 +126,10 @@ export class FeedlyClient extends BaseFeedlyClient {
     this.updateAuth({});
   }
 
-  async restore(auth: FeedlyClientAuthentication = {}): Promise<FeedlyClientAuthentication> {
-    if (auth.expires !== undefined && auth.expires < Date.now()) return this.refresh();
+  async restore({ refresh_token, ...auth }: FeedlyClientAuthentication = {}): Promise<FeedlyClientAuthentication> {
+    if (refresh_token && auth.expires !== undefined && auth.expires < Date.now()) return this.refresh({ refresh_token });
 
-    this.updateAuth(auth);
+    this.updateAuth({ refresh_token, ...auth });
     return this.auth;
   }
 }

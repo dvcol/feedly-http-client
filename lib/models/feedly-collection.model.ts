@@ -1,4 +1,4 @@
-import type { FeedlySubscription } from '~/models/feedly-subscriptions.model';
+import type { FeedlyFeed } from '~/models/feedly-feed.model';
 
 export interface FeedlyCollectionRequest {
   /**
@@ -41,7 +41,19 @@ export interface FeedlyCollection {
   /**
    * The list of feeds in this collection.
    */
-  feeds: FeedlySubscription[];
+  feeds: FeedlyFeed[];
+  /**
+   * Whether the collection can be customized by the user.
+   */
+  customizable?: boolean;
+  /**
+   * Whether the collection is a personal collection or an enterprise one.
+   */
+  enterprise?: boolean;
+  /**
+   * The number of feeds in the collection.
+   */
+  numFeeds?: number;
 }
 
 /**
